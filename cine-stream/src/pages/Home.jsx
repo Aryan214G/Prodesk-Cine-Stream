@@ -1,23 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import { getPopularMovies } from '../services/tmdb';
+import { getPopularMovies, searchMovies } from '../services/tmdb';
 import MovieCard from '../components/MovieCard';
+import SearchBar from '../components/SearchBar';
 
 const Home = () => {
 
     const [movies, setMovies] = useState([]);
+    const [searchText, setSearchText] = useState("");
 
-    const fetchMovies = async () => {
+    const loadPopularMovies = async () => {
 
         const data = await getPopularMovies();
         setMovies(data);
     }
 
+    async function searchForMovies() {
+
+        const results = await searchMovies(searchText);
+
+        setMovies(results);
+
+    }
+
     useEffect(() => {
-        fetchMovies();
-    }, []);
+
+        if (searchText.trim() === "") {
+
+            loadPopularMovies();
+        } else {
+            searchForMovies();
+        }
+
+    }, [searchText]);
 
     return (
         <div>
+            <SearchBar
+
+                searchText={searchText}
+
+                setSearchText={setSearchText}
+
+            />
 
             <div className="movie-grid">
 

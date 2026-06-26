@@ -25,3 +25,35 @@ export async function getPopularMovies() {
         return [];
     }
 }
+
+export async function searchMovies(query) {
+
+    try {
+
+        const response = await axios.get(
+
+            `${BASE_URL}/search/movie`,
+
+            {
+                params: {
+
+                    api_key: API_KEY,
+
+                    query: query
+
+                }
+            }
+
+        );
+
+        return response.data.results;
+
+    } catch (error) {
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
