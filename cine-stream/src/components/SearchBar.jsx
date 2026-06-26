@@ -1,26 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const SearchBar = ({searchText, setSearchText}) => {
-  return (
-    <div>
-        <input
+const SearchBar = ({ searchText, setSearchText }) => {
+    return (
+        <div className="search-container">
+            <input
+                className="search-input"
+                type="text"
+                placeholder="Search movies..."
+                value={searchText}
+                onChange={(event) => setSearchText(event.target.value)}
+            />
+        </div>
+    );
+};
 
-            type="text"
-
-            placeholder="Search movies..."
-
-            value={searchText}
-
-            onChange={(event) =>
-
-                setSearchText(event.target.value)
-
-            }
-
-        />
-        
-    </div>
-  )
-}
-
-export default SearchBar
+export default SearchBar;

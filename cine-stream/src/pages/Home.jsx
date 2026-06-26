@@ -123,9 +123,6 @@ const Home = ({ favorites, setFavorites }) => {
 
             />
 
-            <button onClick={() => setPage(page + 1)} >
-                more </button>
-
             <div className="grid">
 
                 {
