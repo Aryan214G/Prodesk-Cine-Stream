@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getPopularMovies } from '../services/tmdb';
+import MovieCard from '../components/MovieCard';
 
 const Home = () => {
 
@@ -22,7 +23,12 @@ const Home = () => {
 
                 {
                     movies.map(movie =>
-                        <p> {movie.title} </p>
+
+                        <MovieCard
+
+                            key={movie.id}
+                            movie={movie}
+                        />
                     )
                 }
             </div>
