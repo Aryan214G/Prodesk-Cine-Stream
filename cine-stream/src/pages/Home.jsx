@@ -34,8 +34,11 @@ const Home = ({ favorites, setFavorites }) => {
 
     async function searchForMovies() {
 
+        console.log("Searching:", searchText);
+
         const results = await searchMovies(searchText);
 
+    console.log(results);
         setMovies(previousMovies => {
 
             if (page === 1) {

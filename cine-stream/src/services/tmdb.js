@@ -29,32 +29,20 @@ export async function getPopularMovies(page) {
 
 export async function searchMovies(query) {
 
-    try {
+    console.log("Query:", query);
 
-        const response = await axios.get(
-
-            `${BASE_URL}/search/movie`,
-
-            {
-                params: {
-
-                    api_key: API_KEY,
-
-                    query: query
-
-                }
+    const response = await axios.get(
+        `${BASE_URL}/search/movie`,
+        {
+            params: {
+                api_key: API_KEY,
+                query: query,
+                page: 1
             }
+        }
+    );
 
-        );
+    console.log(response);
 
-        return response.data.results;
-
-    } catch (error) {
-
-        console.error(error);
-
-        return [];
-
-    }
-
+    return response.data.results;
 }
