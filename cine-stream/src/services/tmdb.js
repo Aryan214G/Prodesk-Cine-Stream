@@ -3,7 +3,7 @@ import axios from "axios";
 const API_KEY = import.meta.env.VITE_TMDB_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-export async function getPopularMovies() {
+export async function getPopularMovies(page) {
 
     try {
 
@@ -11,7 +11,8 @@ export async function getPopularMovies() {
             `${BASE_URL}/movie/popular`,
             {
                 params: {
-                    api_key: API_KEY
+                    api_key: API_KEY,
+                    page: page
                 }
             }
         );

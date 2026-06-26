@@ -11,7 +11,7 @@ const Home = () => {
 
     const loadPopularMovies = async () => {
 
-        const data = await getPopularMovies();
+        const data = await getPopularMovies(page);
         setMovies(data);
     }
 
