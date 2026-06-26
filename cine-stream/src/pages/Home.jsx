@@ -3,7 +3,7 @@ import { getPopularMovies, searchMovies } from '../services/tmdb';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 
-const Home = () => {
+const Home = ({ favorites, setFavorites }) => {
 
     const [movies, setMovies] = useState([]);
     const [searchText, setSearchText] = useState("");
@@ -95,7 +95,7 @@ const Home = () => {
             );
 
             if (movies.length === 0 || loading) return;
-            
+
             if (entry.isIntersecting && !loading) {
                 setPage(prev => prev + 1);
             }
@@ -132,6 +132,8 @@ const Home = () => {
 
                             key={movie.id}
                             movie={movie}
+                            favorites={favorites}
+                            setFavorites={setFavorites}
                         />
                     )
                 }
