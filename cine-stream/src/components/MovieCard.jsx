@@ -35,33 +35,35 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
 
     return (
         <div className="movie-card">
+    <div className="movie-poster">
+        {movie.poster_path ? (
+            <img
+                src={`${base_url}${movie.poster_path}`}
+                alt={movie.title}
+            />
+        ) : (
+            <div className="no-poster">
+                No Poster
+            </div>
+        )}
+    </div>
 
-            {
-                movie.poster_path ? (
+    <div className="movie-content">
+        <h3>{movie.title}</h3>
 
-                    <img
-                        src={`${base_url}${movie.poster_path}`}
-                    />
-
-                )
-                    : (
-                        <div className="no-poster">
-                            No Poster
-                        </div>
-
-                    )
-            }
-
-            <h3 className='movie-info'>{movie.title}</h3>
-
-            <p>{movie.release_date.substring(0, 4)}</p>
-
-            <p>⭐ {movie.vote_average.toFixed(1)}</p>
-
-            <button onClick={toggleFavorite}>
-                {isFavorite ? "❤️" : "🤍"}
-            </button>
+        <div className="movie-meta">
+            <span>{movie.release_date.substring(0, 4)}</span>
+            <span>⭐ {movie.vote_average.toFixed(1)}</span>
         </div>
+
+        <button
+            className="favorite-btn"
+            onClick={toggleFavorite}
+        >
+            {isFavorite ? "❤️" : "🤍"}
+        </button>
+    </div>
+</div>
     )
 }
 
