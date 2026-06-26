@@ -12,16 +12,50 @@ const Home = () => {
     const loadPopularMovies = async () => {
 
         const data = await getPopularMovies(page);
-        setMovies(data);
+
+        setMovies(previousMovies => {
+
+            if (page === 1) {
+                return data;
+            }
+
+            return [
+                ...previousMovies,
+                ...data
+            ]
+        })
     }
 
     async function searchForMovies() {
 
         const results = await searchMovies(searchText);
 
-        setMovies(results);
+        setMovies(previousMovies => {
+
+            if (page === 1) {
+
+                return results;
+
+            }
+
+            return [
+
+                ...previousMovies,
+
+                ...results
+
+            ];
+
+        });
+
 
     }
+
+    useEffect(() => {
+
+        setPage(1);
+
+    }, [searchText]);
 
     useEffect(() => {
 
@@ -41,7 +75,7 @@ const Home = () => {
             clearTimeout(timer);
         };
 
-    }, [searchText]);
+    }, [searchText, page]);
 
     return (
         <div>
@@ -52,6 +86,9 @@ const Home = () => {
                 setSearchText={setSearchText}
 
             />
+
+            <button onClick={() => setPage(page + 1)} >
+                more </button>
 
             <div className="movie-grid">
 
