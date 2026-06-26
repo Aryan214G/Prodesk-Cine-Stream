@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getPopularMovies, searchMovies } from '../services/tmdb';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
@@ -8,6 +8,7 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [page, setPage] = useState(1);
+    const loaderRef = useRef(null);
 
     const loadPopularMovies = async () => {
 
@@ -77,6 +78,22 @@ const Home = () => {
 
     }, [searchText, page]);
 
+    useEffect(() => {
+
+        const observer = new IntersectionObserver(entries => {
+            entries[0].isIntersecting &&
+                setPage(previousPage => previousPage + 1);
+        });
+
+        observer.observe(loaderRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+
+    }, []);
+
+    
     return (
         <div>
             <SearchBar
@@ -103,6 +120,7 @@ const Home = () => {
                     )
                 }
             </div>
+            <div ref={loaderRef}></div>
         </div>
     )
 }
