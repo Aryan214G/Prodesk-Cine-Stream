@@ -1,12 +1,17 @@
 import React from 'react'
-import { getPopularMovies } from './services/tmdb'
-
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home"
 const App = () => {
 
-  const movies = getPopularMovies();
-
   return (
-    <div>App</div>
+    <Routes>
+      <Route 
+      path = "/"
+      element = { <Home />}
+      />
+
+      </Routes>
   )
 }
 
