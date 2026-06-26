@@ -7,6 +7,7 @@ const Home = () => {
 
     const [movies, setMovies] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [page, setPage] = useState(1);
 
     const loadPopularMovies = async () => {
 
