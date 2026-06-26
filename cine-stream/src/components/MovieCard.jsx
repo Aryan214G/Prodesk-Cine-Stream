@@ -25,8 +25,10 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
 
         } else {
 
-            // remove later
-
+            setFavorites(
+                favorites.filter(favorite => 
+                    favorite.id !== movie.id)
+            );
         }
     }
 
