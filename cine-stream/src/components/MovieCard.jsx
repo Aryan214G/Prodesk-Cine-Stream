@@ -23,6 +23,12 @@ const MovieCard = ({ movie }) => {
                     )
             }
 
+            <h3 className='movie-info'>{movie.title}</h3>
+
+            <p>{movie.release_date.substring(0, 4)}</p>
+
+            <p>⭐ {movie.vote_average.toFixed(1)}</p>
+
         </div>
     )
 }

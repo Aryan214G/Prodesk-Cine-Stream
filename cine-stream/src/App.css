@@ -6,3 +6,56 @@
 
     padding: 32px;
 }
+
+.movie-card {
+
+    background: #222;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    transition: transform 0.2s;
+
+    cursor: pointer;
+}
+
+.movie-card img {
+
+    width: 100%;
+
+    display: block;
+}
+
+.movie-info {
+
+    padding: 16px;
+}
+
+.movie-info h3 {
+
+    margin: 0 0 10px;
+
+    font-size: 1rem;
+}
+
+.movie-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.movie-card:hover {
+
+    transform: scale(1.03);
+}
+
+.movie-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+    gap: 24px;
+}

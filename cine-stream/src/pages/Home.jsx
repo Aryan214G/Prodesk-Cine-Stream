@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <div>
 
-            <div>
+            <div className="movie-grid">
 
                 {
                     movies.map(movie =>
