@@ -9,13 +9,27 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
     for (let i = 0; i < favorites.length; i++) {
 
         if (favorites[i].id === movie.id) {
-
             isFavorite = true;
             break;
+        }
+    }
+
+    function toggleFavorite() {
+
+        if (!isFavorite) {
+
+            setFavorites([
+                ...favorites,
+                movie
+            ]);
+
+        } else {
+
+            // remove later
 
         }
-
     }
+
 
     return (
         <div className="movie-card">
@@ -42,10 +56,8 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
 
             <p>⭐ {movie.vote_average.toFixed(1)}</p>
 
-            <button>
-
+            <button onClick={toggleFavorite}>
                 {isFavorite ? "❤️" : "🤍"}
-
             </button>
         </div>
     )
