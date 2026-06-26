@@ -8,9 +8,12 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const loaderRef = useRef(null);
 
-    const loadPopularMovies = async () => {
+    const loadPopularMovies = async (page) => {
+
+        setLoading(true);
 
         const data = await getPopularMovies(page);
 
@@ -25,6 +28,8 @@ const Home = () => {
                 ...data
             ]
         })
+
+        setLoading(false);
     }
 
     async function searchForMovies() {
@@ -64,7 +69,7 @@ const Home = () => {
 
             if (searchText.trim() === "") {
 
-                loadPopularMovies();
+                loadPopularMovies(page);
 
             } else {
                 searchForMovies();
@@ -81,8 +86,13 @@ const Home = () => {
     useEffect(() => {
 
         const observer = new IntersectionObserver(entries => {
-            entries[0].isIntersecting &&
-                setPage(previousPage => previousPage + 1);
+            const entry = entries[0];
+
+            console.log(entry.isIntersecting);
+
+            if (entry.isIntersecting && !loading) {
+                setPage(prev => prev + 1);
+            }
         });
 
         observer.observe(loaderRef.current);
@@ -91,9 +101,9 @@ const Home = () => {
             observer.disconnect();
         };
 
-    }, []);
+    }, [loading]);
 
-    
+
     return (
         <div>
             <SearchBar
