@@ -30,26 +30,26 @@ const App = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-    <Routes>
-      <Route
-        path="/"
-        element={<Home
-          favorites={favorites}
-          setFavorites={setFavorites} />}
-      />
-
-      <Route
-        path="/favorites"
-        element={
-          <Favorites
+      <Routes>
+        <Route
+          path="/"
+          element={<Home
             favorites={favorites}
-            setFavorites={setFavorites}
-          />
-        }
-      />
-    </Routes>
+            setFavorites={setFavorites} />}
+        />
+
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
+          }
+        />
+      </Routes>
 
     </>
   )

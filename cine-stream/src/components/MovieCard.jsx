@@ -26,7 +26,7 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
         } else {
 
             setFavorites(
-                favorites.filter(favorite => 
+                favorites.filter(favorite =>
                     favorite.id !== movie.id)
             );
         }
@@ -35,35 +35,35 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
 
     return (
         <div className="movie-card">
-    <div className="movie-poster">
-        {movie.poster_path ? (
-            <img
-                src={`${base_url}${movie.poster_path}`}
-                alt={movie.title}
-            />
-        ) : (
-            <div className="no-poster">
-                No Poster
+            <div className="movie-poster">
+                {movie.poster_path ? (
+                    <img
+                        src={`${base_url}${movie.poster_path}`}
+                        alt={movie.title}
+                    />
+                ) : (
+                    <div className="no-poster">
+                        No Poster
+                    </div>
+                )}
             </div>
-        )}
-    </div>
 
-    <div className="movie-content">
-        <h3>{movie.title}</h3>
+            <div className="movie-content">
+                <h3>{movie.title}</h3>
 
-        <div className="movie-meta">
-            <span>{movie.release_date.substring(0, 4)}</span>
-            <span>⭐ {movie.vote_average.toFixed(1)}</span>
+                <div className="movie-meta">
+                    <span>{movie.release_date.substring(0, 4)}</span>
+                    <span>⭐ {movie.vote_average.toFixed(1)}</span>
+                </div>
+
+                <button
+                    className="favorite-btn"
+                    onClick={toggleFavorite}
+                >
+                    {isFavorite ? "❤️" : "🤍"}
+                </button>
+            </div>
         </div>
-
-        <button
-            className="favorite-btn"
-            onClick={toggleFavorite}
-        >
-            {isFavorite ? "❤️" : "🤍"}
-        </button>
-    </div>
-</div>
     )
 }
 

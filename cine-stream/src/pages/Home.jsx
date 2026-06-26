@@ -38,7 +38,7 @@ const Home = ({ favorites, setFavorites }) => {
 
         const results = await searchMovies(searchText);
 
-    console.log(results);
+        console.log(results);
         setMovies(previousMovies => {
 
             if (page === 1) {
