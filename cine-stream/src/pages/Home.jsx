@@ -88,8 +88,14 @@ const Home = () => {
         const observer = new IntersectionObserver(entries => {
             const entry = entries[0];
 
-            console.log(entry.isIntersecting);
+            console.log(
+                "Intersecting:", entry.isIntersecting,
+                "Page:", page,
+                "Loading:", loading
+            );
 
+            if (movies.length === 0 || loading) return;
+            
             if (entry.isIntersecting && !loading) {
                 setPage(prev => prev + 1);
             }
