@@ -24,12 +24,21 @@ const Home = () => {
 
     useEffect(() => {
 
-        if (searchText.trim() === "") {
+        const timer = setTimeout(() => {
 
-            loadPopularMovies();
-        } else {
-            searchForMovies();
-        }
+            if (searchText.trim() === "") {
+
+                loadPopularMovies();
+
+            } else {
+                searchForMovies();
+            }
+
+        }, 500);
+
+        return () => {
+            clearTimeout(timer);
+        };
 
     }, [searchText]);
 
