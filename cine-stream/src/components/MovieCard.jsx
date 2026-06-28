@@ -4,7 +4,9 @@ const MovieCard = ({ movie, favorites, setFavorites }) => {
 
     const base_url = "https://image.tmdb.org/t/p/w500";
 
-    let isFavorite = false;
+    let isFavorite = favorites.some(
+        favorite => favorite.id === movie.id
+    );
 
     for (let i = 0; i < favorites.length; i++) {
 
